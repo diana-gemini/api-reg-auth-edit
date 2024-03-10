@@ -1,0 +1,62 @@
+{{template "base" .}}
+
+<body>
+    {{$logged:=.IsLoggedin}}
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">API</a>
+          </div>
+    
+          <ul class="nav navbar-nav navbar-right">
+            {{if $logged}}
+            <li><a href="/editprofile"> Жеке деректер </a></li>
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Шығу</a></li>
+            {{else}}
+            <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Тіркелу</a></li>
+            <li><a href="/signin"><span class="glyphicon glyphicon-log-in"></span> Кіру</a></li>
+            {{end}}
+          </ul>
+        </div>
+      </nav>
+
+    <div class="container col-sm-6 col-md-offset-3">
+        <form method="POST"  action="/profileeditsave" id="postForm" class="form-horizontal">
+            <fieldset>
+                <legend style="color:white;">Жеке деректер</legend>
+
+
+                <div class="form-group">
+                    <label for="title" style="color:rgb(177, 173, 173);">Сіздің атыңыз</label>
+                    <textarea name="username" class="form-control" id="title"  
+                    style="height: 50px; background-color:rgb(31, 31, 59); color:white;"
+                    maxlength="250" pattern=".*\S+.*" required>{{.User.Username}}</textarea>
+                </div> 
+                <div class="form-group">
+                    <label for="title" style="color:rgb(177, 173, 173);">Email</label>
+                    <label name="email" class="form-control" id="title"  
+                    style="height: 50px; background-color:rgb(31, 31, 59); color:white;"
+                    maxlength="250" pattern=".*\S+.*" required>{{.User.Email}}</label>
+                </div> 
+                <div class="form-group" style="color:rgb(177, 173, 173);">
+                    <label for="title">Телефон</label>
+                    <textarea name="mobile" class="form-control" id="title"  
+                    style="height: 50px; background-color:rgb(31, 31, 59); color:white;"
+                    maxlength="250" pattern=".*\S+.*" required>{{.User.Mobile}}</textarea>
+                </div> 
+                <div class="form-group" style="color:rgb(177, 173, 173);">
+                    <label for="title">Туылған күні</label>
+                    <textarea name="birthdate" class="form-control" id="title"  
+                    style="height: 50px; background-color:rgb(31, 31, 59); color:white;"
+                    maxlength="250" pattern=".*\S+.*" required>{{.User.BirthDate}}</textarea>
+                </div> 
+               
+                <input type="submit" class="btn btn-info" value="Деректерді сақтау">
+
+            </fieldset>
+        </form>
+    </div>
+
+</body>
+
+</html>
